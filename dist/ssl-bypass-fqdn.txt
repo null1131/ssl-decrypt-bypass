@@ -3,7 +3,7 @@
 # High-reliability FQDN list for enterprise firewall exceptions
 # https://github.com/null1131/ssl-decrypt-bypass
 # LICENSE: MIT
-# Last Updated: 2026-07-29 17:13:30 UTC
+# Last Updated: 2026-07-29 17:23:29 UTC
 # Dynamic Entries: 191
 # Static Entries: 230
 # Total Unique Entries: 421
