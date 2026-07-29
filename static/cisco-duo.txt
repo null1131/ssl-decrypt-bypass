@@ -1,0 +1,4 @@
+#Cisco DUO
+
+# Covers all needed services according to documentation.
+*.duosecurity.com
