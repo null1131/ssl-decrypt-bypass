@@ -12,7 +12,7 @@ Before submitting a Pull Request, verify that your domain meets **ALL** of the f
 
 1. **Hard Service Breakage:** The service or application must actively fail, crash, or refuse to connect when intercepted by a custom root CA.
 2. **Technical Reason:** The failure must be caused by certificate pinning, proprietary/non-HTTP TLS wrappers, or mutual TLS (mTLS).
-3. **Minimal Scope:** Submissions must be as granular as possible.
+3. **Minimal Scope:** Submissions must be as granular as possible. Do not submit `*.google.com` if only `dl.google.com` or `*.gvt1.com` breaks.
 
 ### What Will Be Rejected ❌
 * "Trusted" websites (e.g., news sites, enterprise SaaS) that function fine under TLS inspection.
@@ -57,6 +57,4 @@ Verify that:
 
 * The build completes without errors.
 * Your temporary `.tmp` files were created and cleaned up.
-* `dist/ssl-bypass-fqdn.txt` contains your changes properly sorted.
-
-
+* `dist/ssl-bypass-fqdn.txt` is generated cleanly. *(Do not commit the `dist/` directory; it is ignored by Git and compiled automatically by Cloudflare Pages).*

@@ -1,0 +1,13 @@
+# Build output (handled by Cloudflare Pages on build)
+dist/
+
+# Temporary script files
+*.tmp
+
+# Python cache
+__pycache__/
+*.pyc
+
+# OS files
+.DS_Store
+Thumbs.db

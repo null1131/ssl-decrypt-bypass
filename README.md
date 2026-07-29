@@ -12,9 +12,11 @@ An automated, minimal, community-curated FQDN bypass list designed for enterpris
 
 ## 🚀 Public Endpoint & CDN Links
 
-This project builds nightly via GitHub Actions and deploys directly to Cloudflare Pages for maximum availability and global edge caching.
+This project deploys directly to a global edge CDN for maximum availability and low-latency fetching.
 
-**CDN URL:** `https://ssl-decrypt-bypass.pages.dev/ssl-bypass-fqdn.txt`
+| Asset | CDN URL |
+| :--- | :--- |
+| **FQDN Bypass List** | `https://ssl-decrypt-bypass.pages.dev/ssl-bypass-fqdn.txt` |
 
 ### Firewall Integration Guidelines
 * **Update Frequency:** Set your firewall's External Dynamic List (EDL) or threat feed refresh interval to **60 minutes** (1 hour) or longer. 
@@ -24,9 +26,16 @@ This project builds nightly via GitHub Actions and deploys directly to Cloudflar
 
 ## 🛠️ How It Works
 
-The repository uses a hybrid ingestion process that executes every night at 03:00 UTC:
+The repository uses a hybrid ingestion build pipeline that runs on deploy:
 
-1. **Dynamic Ingestion (`/dynamic`):** Runs lightweight Python and Bash scripts to fetch officially published endpoint APIs (e.g., Microsoft 365 JSON endpoints) directly from vendors.
+1. **Dynamic Ingestion (`/dynamic`):** Runs lightweight Python and Bash scripts to fetch officially published endpoint APIs (e.g., Microsoft 365, Google ChromeOS) directly from vendors.
 2. **Static Ingestion (`/static`):** Imports curated text files containing domains known to use TLS pinning that do not offer an official endpoint API.
-3. **Build & Deduplication (`build.py`):** Normalizes, strips inline comments, deduplicates all entries, sorts them alphabetically (to prevent noisy Git diffs), and writes metadata counts to the header.
-4. **Edge Deployment:** Commits the output to `dist/`, triggering an instant deployment to Cloudflare Pages.
+3. **Build & Deduplication (`build.py`):** Normalizes, strips inline comments, deduplicates all entries, sorts them alphabetically, and writes metadata counts to the output header.
+4. **Edge Delivery:** Cloudflare Pages executes the build script and immediately serves the generated `dist/` directory globally.
+
+---
+
+## 📄 License
+
+Distributed under the [MIT License](LICENSE).
+
