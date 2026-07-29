@@ -14,10 +14,7 @@ An automated, minimal, community-curated FQDN bypass list designed for enterpris
 
 This project builds nightly via GitHub Actions and deploys directly to Cloudflare Pages for maximum availability and global edge caching.
 
-| Asset | CDN URL |
-| :--- | :--- |
-| **FQDN Bypass List** | `https://ssl-bypass.yourdomain.com/ssl-bypass-fqdn.txt` |
-| **Cloudflare Pages Direct** | `https://<your-project>.pages.dev/ssl-bypass-fqdn.txt` |
+**CDN URL:** `https://ssl-decrypt-bypass.pages.dev/ssl-bypass-fqdn.txt`
 
 ### Firewall Integration Guidelines
 * **Update Frequency:** Set your firewall's External Dynamic List (EDL) or threat feed refresh interval to **60 minutes** (1 hour) or longer. 
