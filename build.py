@@ -1,8 +1,8 @@
 from datetime import datetime, timezone
 import glob
 import os
-import subprocess
 import shutil
+import subprocess
 
 DIST_DIR = "dist"
 STATIC_DIR = "static"
@@ -11,9 +11,11 @@ DYNAMIC_DIR = "dynamic"
 # Ensure clean distribution directory
 os.makedirs(DIST_DIR, exist_ok=True)
 
+
 def sanitize_entry(line):
-    line = line.split('#')[0].strip().lower()
+    line = line.split("#")[0].strip().lower()
     return line
+
 
 def process_build():
     dynamic_fqdns = set()
@@ -45,12 +47,15 @@ def process_build():
                 if clean:
                     static_fqdns.add(clean)
 
+    # Always inject default domain(s)
+    static_fqdns.add("ssl-decrypt-bypass.pages.dev")
+
     # Combine sets for total unique deduplication
     total_fqdns = dynamic_fqdns.union(static_fqdns)
 
     # 4. Generate Output Header
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-    
+
     header = (
         "# =============================================================\n"
         "# SSL Decryption Bypass List\n"
@@ -73,7 +78,11 @@ def process_build():
     if os.path.exists("index.html"):
         shutil.copy("index.html", os.path.join(DIST_DIR, "index.html"))
 
-    print(f"Build complete. Dynamic: {len(dynamic_fqdns)} | Static: {len(static_fqdns)} | Total: {len(total_fqdns)}")
+    print(
+        f"Build complete. Dynamic: {len(dynamic_fqdns)} | Static:"
+        f" {len(static_fqdns)} | Total: {len(total_fqdns)}"
+    )
+
 
 if __name__ == "__main__":
     process_build()
