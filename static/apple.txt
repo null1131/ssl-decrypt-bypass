@@ -1,0 +1,13 @@
+#Apple
+#https://support.apple.com/en-us/101555
+
+#Apple generally does not like to be inspected at all
+
+*.apple.com
+*.cdn-apple.com
+*.mzstatic.com
+*.icloud.com
+*.icloud-content.com
+*.apple-mapkit.com
+
+app-site-association.networking.apple
