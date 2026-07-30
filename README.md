@@ -1,41 +1,40 @@
 # Enterprise SSL/TLS Decryption Bypass List
 
-An automated, minimal, community-curated FQDN bypass list designed for enterprise firewalls (Palo Alto Networks, Fortinet, Cisco Secure Firewall, pfSense, etc.) to prevent service disruption caused by SSL/TLS decryption.
+This repository provides an automated list of FQDN items for enterprise firewalls. It prevents service problems caused by SSL/TLS decryption.
 
 > [!IMPORTANT]
-> **THIS IS NOT A FILTER OR CONTENT BLOCKLIST.**  
-> This list exists solely to bypass SSL/TLS decryption (TLS inspection) for services that **actively break** when intercepted due to hardcoded certificate pinning, proprietary non-HTTP protocols wrapped in TLS, or mutual TLS authentication (e.g., Office 365, Google Play services, Apple push notifications, banking apps).  
+> **THIS IS NOT A FILTER OR A BLOCKLIST.**  
+> Use this list only to bypass SSL/TLS decryption for services that fail during inspection. These failures occur because of certificate pinning, non-HTTP TLS protocols, or mutual TLS authentication.  
 > 
-> **Do not submit domains here just because a site is "trusted."** Every entry added to an inspection bypass list expands your network's blind spot.
+> **Do not add domains only because a website is trusted.** Each domain in the bypass list reduces network security.
 
 ---
 
-## 🚀 Public Endpoint & CDN Links
+## 🚀 Public Endpoints and CDN Links
 
-This project deploys directly to a global edge CDN for maximum availability and low-latency fetching.
+This project deploys to a global content delivery network (CDN) for fast access and high availability.
 
 | Asset | CDN URL |
 | :--- | :--- |
 | **FQDN Bypass List** | `https://ssl-decrypt-bypass.pages.dev/ssl-bypass-fqdn.txt` |
 
-### Firewall Integration Guidelines
-* **Update Frequency:** Set your firewall's External Dynamic List (EDL) or threat feed refresh interval to **60 minutes** (1 hour) or longer. 
-* **Format:** Plaintext, line-separated FQDNs with wildcards (e.g., `*.domain.com` or `sub.domain.com`), stripped of comments and duplicate entries.
+### Guidelines for Firewall Integration
+* **Update Frequency:** Set your firewall to update the list every 60 minutes or longer.
+* **Format:** Plain text list of FQDNs. Put each item on a new line. The list contains no comments or duplicate items.
 
 ---
 
-## 🛠️ How It Works
+## 🛠️ How the System Works
 
-The repository uses a hybrid ingestion build pipeline that runs on deploy:
+The repository uses an automated build process during deployment:
 
-1. **Dynamic Ingestion (`/dynamic`):** Runs lightweight Python and Bash scripts to fetch officially published endpoint APIs (e.g., Microsoft 365, Google ChromeOS) directly from vendors.
-2. **Static Ingestion (`/static`):** Imports curated text files containing domains known to use TLS pinning that do not offer an official endpoint API.
-3. **Build & Deduplication (`build.py`):** Normalizes, strips inline comments, deduplicates all entries, sorts them alphabetically, and writes metadata counts to the output header.
-4. **Edge Delivery:** Cloudflare Pages executes the build script and immediately serves the generated `dist/` directory globally.
+1. **Dynamic Processing (`/dynamic`):** Runs Python and Bash scripts to get official endpoint data from vendors.
+2. **Static Processing (`/static`):** Reads text files that contain domains with TLS pinning when no official API exists.
+3. **Build and Clean Process (`build.py`):** Cleans the data, removes comments and duplicates, sorts the list in alphabetical order, and writes summary information to the header.
+4. **Global Delivery:** Cloudflare Pages runs the build script and delivers the generated `dist/` directory to all locations.
 
 ---
 
 ## 📄 License
 
-Distributed under the [MIT License](LICENSE).
-
+This project uses the [MIT License](LICENSE).

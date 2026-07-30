@@ -8,7 +8,7 @@ DIST_DIR = "dist"
 STATIC_DIR = "static"
 DYNAMIC_DIR = "dynamic"
 
-# Ensure clean distribution directory
+# Make a new distribution directory if it does not exist
 os.makedirs(DIST_DIR, exist_ok=True)
 
 
@@ -21,15 +21,15 @@ def process_build():
     dynamic_fqdns = set()
     static_fqdns = set()
 
-    # 1. Execute all dynamic scripts
-    print("Executing dynamic scripts...")
+    # 1. Run all dynamic scripts
+    print("Run dynamic scripts...")
     for script in sorted(glob.glob(os.path.join(DYNAMIC_DIR, "*"))):
         if script.endswith(".py"):
             subprocess.run(["python3", script], check=True)
         elif script.endswith(".sh"):
             subprocess.run(["bash", script], check=True)
 
-    # 2. Collect temp dynamic files
+    # 2. Collect temporary dynamic files
     for tmp_file in glob.glob("dynamic_*.tmp"):
         with open(tmp_file, "r") as f:
             for line in f:
@@ -39,7 +39,7 @@ def process_build():
         os.remove(tmp_file)
 
     # 3. Read static text files
-    print("Reading static files...")
+    print("Read static files...")
     for static_file in sorted(glob.glob(os.path.join(STATIC_DIR, "*.txt"))):
         with open(static_file, "r") as f:
             for line in f:
@@ -47,29 +47,29 @@ def process_build():
                 if clean:
                     static_fqdns.add(clean)
 
-    # Always inject default domain(s)
+    # Add the default domain name
     static_fqdns.add("ssl-decrypt-bypass.pages.dev")
 
-    # Combine sets for total unique deduplication
+    # Combine sets to remove duplicate items
     total_fqdns = dynamic_fqdns.union(static_fqdns)
 
-    # 4. Generate Output Header
+    # 4. Create the output header
     timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
 
     header = (
         "# =============================================================\n"
         "# SSL Decryption Bypass List\n"
-        "# High-reliability FQDN list for enterprise firewall exceptions\n"
+        "# List of FQDN items for firewall exceptions\n"
         "# https://github.com/null1131/ssl-decrypt-bypass\n"
         "# LICENSE: MIT\n"
-        f"# Last Updated: {timestamp}\n"
-        f"# Dynamic Entries: {len(dynamic_fqdns)}\n"
-        f"# Static Entries: {len(static_fqdns)}\n"
-        f"# Total Unique Entries: {len(total_fqdns)}\n"
+        f"# Date of last update: {timestamp}\n"
+        f"# Dynamic items: {len(dynamic_fqdns)}\n"
+        f"# Static items: {len(static_fqdns)}\n"
+        f"# Total unique items: {len(total_fqdns)}\n"
         "# =============================================================\n\n"
     )
 
-    # 5. Write list to Dist Directory (sorted alphabetically to minimize git diffs)
+    # 5. Write the list to the distribution directory in alphabetical order
     with open(os.path.join(DIST_DIR, "ssl-bypass-fqdn.txt"), "w") as f:
         f.write(header)
         f.write("\n".join(sorted(total_fqdns)) + "\n")
