@@ -20,7 +20,7 @@ This project deploys to a global content delivery network (CDN) for fast access 
 | :--- | :--- |
 | **FQDN Bypass List** | `https://ssl-decrypt-bypass.pages.dev/ssl-bypass-fqdn.txt` |
 | **FQDN Bypass List (with sources)** | `https://ssl-decrypt-bypass.pages.dev/ssl-bypass-debug.txt` |
-| **FQDN CSV (wuth sources)** | `https://ssl-decrypt-bypass.pages.dev/ssl-bypass-debug.csv` |
+| **FQDN CSV (with sources)** | `https://ssl-decrypt-bypass.pages.dev/ssl-bypass-debug.csv` |
 
 ### Guidelines for Firewall Integration
 * **Update Frequency:** Set your firewall to update the list every 60 minutes or longer.
