@@ -103,7 +103,7 @@ def process_build():
         f.write("\n".join(sorted(total_fqdns)) + "\n")
         
     # 5b. Write the commented list
-    with open(os.path.join(DIST_DIR, "ssl-bypass-fqdn-comments.txt"), "w") as f:
+    with open(os.path.join(DIST_DIR, "ssl-bypass-fqdn-debug.txt"), "w") as f:
         f.write(header)
         for fqdn in sorted(total_fqdns):
             sources = ", ".join(sorted(fqdn_sources[fqdn]))
