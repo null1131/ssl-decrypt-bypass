@@ -2,13 +2,7 @@
 
 This repository provides an automated list of FQDN items for enterprise firewalls. It prevents service problems caused by SSL/TLS decryption.
 
-![Last Build](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fssl-decrypt-bypass.pages.dev%2Fstats.json&query=%24.last_build&label=last%20build&color=blue)
-
-
-![Whitelisted Domains](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fssl-decrypt-bypass.pages.dev%2Fstats.json&query=%24.total&label=whitelisted%20domains&color=brightgreen)
-
-![Dynamic Domains](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fssl-decrypt-bypass.pages.dev%2Fstats.json&query=%24.dynamic&label=dynamic%20domains&color=informational)
-![Static Domains](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fssl-decrypt-bypass.pages.dev%2Fstats.json&query=%24.static&label=static%20domains&color=informational)
+![Last Build](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fssl-decrypt-bypass.pages.dev%2Fstats.json&query=%24.last_build&label=last%20build&color=blue) ![Whitelisted Domains](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fssl-decrypt-bypass.pages.dev%2Fstats.json&query=%24.total&label=whitelisted%20domains&color=brightgreen) ![Dynamic Domains](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fssl-decrypt-bypass.pages.dev%2Fstats.json&query=%24.dynamic&label=dynamic%20domains&color=informational) ![Static Domains](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fssl-decrypt-bypass.pages.dev%2Fstats.json&query=%24.static&label=static%20domains&color=informational)
 
 ---
 > [!IMPORTANT]
