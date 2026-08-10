@@ -1,0 +1,18 @@
+#Known WiFi Calling Hosts.
+
+#Most Carriers
+*.pub.3gppnetwork.org
+
+#CSpire
+*.vowifi.cspire.com
+
+#Verizon
+*.vzwfemto.com
+*.vzwwo.com
+
+#ATT
+epdg.epc.att.net
+
+
+#Other/Unclassified
+*.spcsdns.net
