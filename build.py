@@ -1,5 +1,6 @@
 from datetime import datetime, timezone
 import glob
+import json
 import os
 import shutil
 import subprocess
@@ -54,7 +55,8 @@ def process_build():
     total_fqdns = dynamic_fqdns.union(static_fqdns)
 
     # 4. Create the output header
-    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    timestamp_utc = datetime.now(timezone.utc)
+    timestamp_str = timestamp_utc.strftime("%Y-%m-%d %H:%M:%S UTC")
 
     header = (
         "# =============================================================\n"
@@ -62,7 +64,7 @@ def process_build():
         "# List of FQDN items for firewall exceptions\n"
         "# https://github.com/null1131/ssl-decrypt-bypass\n"
         "# LICENSE: MIT\n"
-        f"# Date of last update: {timestamp}\n"
+        f"# Date of last update: {timestamp_str}\n"
         f"# Dynamic items: {len(dynamic_fqdns)}\n"
         f"# Static items: {len(static_fqdns)}\n"
         f"# Total unique items: {len(total_fqdns)}\n"
@@ -74,7 +76,19 @@ def process_build():
         f.write(header)
         f.write("\n".join(sorted(total_fqdns)) + "\n")
 
-    # 6. Copy index.html for Cloudflare Pages
+    # 6. Generate a single JSON file for Dynamic Shields.io Badges
+    print("Generating stats.json for Shields.io...")
+    stats_data = {
+        "last_build": timestamp_utc.strftime("%Y-%m-%d %H:%M UTC"),
+        "total": len(total_fqdns),
+        "dynamic": len(dynamic_fqdns),
+        "static": len(static_fqdns)
+    }
+
+    with open(os.path.join(DIST_DIR, "stats.json"), "w") as f:
+        json.dump(stats_data, f, indent=2)
+
+    # 7. Copy index.html for Cloudflare Pages
     if os.path.exists("index.html"):
         shutil.copy("index.html", os.path.join(DIST_DIR, "index.html"))
 
