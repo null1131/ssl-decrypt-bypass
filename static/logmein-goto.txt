@@ -1,0 +1,14 @@
+#GoTo Specific Domains
+*.gotomeet.at
+*.gotomeet.me
+*.gotomeeting.com
+*.joingotomeeting.com
+*.openvoice.com
+*.gofastchat.com
+builds.cdn.goto.com
+builds.cdn.getgo.com
+launch.getgo.com
+meet.goto.com
+goto-desktop.s3.amazonaws.com
+*.gotoconference.com
+*.gotoroom.com
