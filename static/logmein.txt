@@ -1,0 +1,16 @@
+#LogMeIn Shared
+*.accounts.logme.in
+*app.goto.com
+*.cdngetgo.com
+*.expertcity.com
+*.getgo.com
+*.getgocdn.com
+*.getgoservices.com
+*.getgoservices.net
+*.goto.com
+*.goto.eu
+*.gotoinc.com
+*.goto-rtc.com
+*.logmein.com
+*.logmeininc.com
+*logmein.eu
